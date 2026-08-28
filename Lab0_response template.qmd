@@ -44,7 +44,7 @@ tornadoes <- read_csv("data/stormevents/noaa_stormevent_tornado_2026_08.csv")
 
 **Task 2:** *Pick two variables from either dataset that use different levels of measurement (nominal, ordinal, interval or ratio). Explain which level best describes each variable and why. Also identify one variable that would be more efficiently read as a factor, and explain why.*
 
-Variables that I plan to analyze: CZ_Name (from Tornado Database) -- this should be nominal and E_UNEMP -- this should be ratio (0 means 0) -- (from SVI); for part 2 of the question, I might use EP_MOBILE (from Tornado Database) b/c 
+Variables that I plan to analyze: CZ_Name (from Tornado Database) -- this should be nominal and E_UNEMP -- this should be ratio (0 means 0) -- (from SVI); for part 2 of the question, I might use EP_MOBILE (from Tornado Database) b/c you could rank the numbers as highest to lowest and more efficiently see how this varies with vulnerability. Could also maybe do this for pop data -- need to think about this part some more. 
 
 ## Filtering and/or summarizing the data
 
