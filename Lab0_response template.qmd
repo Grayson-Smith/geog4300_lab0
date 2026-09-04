@@ -68,7 +68,7 @@ To do so, you'll need to:
 # Your code goes here.
 
 violent_tors <- tornadoes %>%
-  filter(TOR_F_SCALE %in% c("F3","F4","F5"))
+  filter(str_detect(TOR_F_SCALE,"F3") | str_detect(TOR_F_SCALE,"F4") | str_detect(TOR_F_SCALE,"F5"))
 #view(violent_tors) #used this to make sure it worked
 
 grouped_violent_tors <- violent_tors %>%
@@ -76,11 +76,10 @@ grouped_violent_tors <- violent_tors %>%
 #view(grouped_violent_tors)
 
 vio_tors_by_cty_st <- grouped_violent_tors %>%
-  group_by(cty_fips,STATE)
-  summarise(tor_count = count())
+  group_by(cty_fips,STATE_FIPS,CZ_NAME,STATE) %>%
+  summarise(tor_count = n())
 #view(vio_tors_by_cty_st)
-  
-#COME BACK TO THIS! Think it might be failing because we are not looking at unique values. Ask about this!
+
 ```
 
 You also want to filter the social vulnerability data so that it only includes counties with a population over 25,000 people. This allows us to only track counties with a moderate or large population. Use the SVI Documentation pdf in the data folder to determine which variable this is, recognizing that you want the **estimate** and not the margin of error (MOE).
@@ -114,6 +113,8 @@ mobile_home_filter <- revised_counties_pop %>%
 
 Describe your variable, why you chose it, and (if applicable) why you chose the cutoff you did.
 
+I chose the flag used to delineate those counties with a percentage that is the 90th (or above) percentile. I chose this individual variable for a number of reasons, chief among those the fact that mobile homes are one of the most dangerous places to be during a tornadic event -- with extensive literature indicating that the chance of fatalities is much higher in mobile (and manufactured) homes than in other structures. Further, the percentage of mobile homes in a county might also be a good proxy for a lower socioeconomic status in that county (given that mobile homes are typically a more affordable alternative to other, more expensive [but safer] types of housing), which might also increase the vulnerability of that county to tornadoes and their effects (especially in the recovery stage after the storm). I also considered using the F_THEME4 flag for Housing Type/Transporation characteristics to consider other types of vulnerable housing situations (like people living in crowded homes); however, given the very well-established correlation between mobile homes and tornado effects, I decided to go with that flag to better measure counties that fall within that well-known vulnerable situation. Further research could certainly focus on a broader look at a wider breadth of potentially vulnerable housing situations; however, this might even be more effectively done by singularly examining vulnerability per structure (like using the flag for crowded houses) to determine vulnerability per housing type rather than examining potentially vulnerable housing types as a whole (since using whole-sale housing vulnerability might not give as helpful information on what types of structures are actually most vulnerable).
+
 ## Connecting the data
 
 Next you'll need to join these tornado counts to SVI population data using the `inner_join()` function. To do so you'll need to have two fields with the same name in each dataset. The FIPS codes are in both datasets, but they have different names (`FIPS` and `cty_fips`). The following code creates a new variable called `cty_fips` in the SVI data using `rename()`.
@@ -121,8 +122,9 @@ Next you'll need to join these tornado counts to SVI population data using the `
 **NOTE:** You may need to change the name of the population data below to match the object you used for the SVI data.
 
 ```{r}
-svi <- svi %>%
+revised_counties_pop_corr <- revised_counties_pop %>%
   rename(cty_fips = FIPS)
+view(revised_counties_pop)
 ```
 
 Call the function above to rename your data. Now you're ready to join the data.
