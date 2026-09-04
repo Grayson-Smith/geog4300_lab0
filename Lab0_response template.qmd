@@ -40,11 +40,14 @@ You can load the tornado data (`noaa_stormevent_tornado_2026_08.csv` in the fold
 # Your code goes here.
 svi <- read_csv("data/SVI_2022_US_county.csv")
 tornadoes <- read_csv("data/stormevents/noaa_stormevent_tornado_2026_08.csv")
+view(tornadoes)
 ```
 
 **Task 2:** *Pick two variables from either dataset that use different levels of measurement (nominal, ordinal, interval or ratio). Explain which level best describes each variable and why. Also identify one variable that would be more efficiently read as a factor, and explain why.*
 
-Variables that I plan to analyze: CZ_Name (from Tornado Database) -- this should be nominal and E_UNEMP -- this should be ratio (0 means 0) -- (from SVI); for part 2 of the question, I might use EP_MOBILE (from Tornado Database) b/c you could rank the numbers as highest to lowest and more efficiently see how this varies with vulnerability. Could also maybe do this for pop data -- need to think about this part some more. 
+Variables that I plan to analyze: The two variables that I chose to analyze where the CZ_name (County Name) from the Tornado database and E_UNEMP (Number of unemployeed people) in the SVI database. I think that the CZ_name data are nominal because it is using categorical labeling data with no natural order or rank. E_UNEMP data appear to be ratio data, as it is quantitative data that has a natural rank and order and has a true zero value (i.e., 0 people being unemployed truly means there is nobody unemployed). 
+
+Concerning a variable that might be better read as a factor, it appears that the TOR_F_SCALE -- which is currently read as a character despite likely being an ordinal variable in nature -- might be better read as a factor. This is likely the case because this would allow us to first order the information from F0 to F5 (in the order that makes the most sense) and perhaps to also group that data together according to that rank (i.e., all the F0s could be grouped together). This would help us take the currently character (and often repeating) F-scale data and put it into a format where its ordering is better recognized and repeating values are better grouped together. 
 
 ## Filtering and/or summarizing the data
 
@@ -62,8 +65,22 @@ To do so, you'll need to:
 
 ```{r}
 #| label: Task3
-
 # Your code goes here.
+
+violent_tors <- tornadoes %>%
+  filter(TOR_F_SCALE %in% c("F3","F4","F5"))
+#view(violent_tors) #used this to make sure it worked
+
+grouped_violent_tors <- violent_tors %>%
+  group_by(STATE_FIPS, STATE, cty_fips,CZ_NAME)
+#view(grouped_violent_tors)
+
+vio_tors_by_cty_st <- grouped_violent_tors %>%
+  group_by(cty_fips,STATE)
+  summarise(tor_count = count())
+#view(vio_tors_by_cty_st)
+  
+#COME BACK TO THIS! Think it might be failing because we are not looking at unique values. Ask about this!
 ```
 
 You also want to filter the social vulnerability data so that it only includes counties with a population over 25,000 people. This allows us to only track counties with a moderate or large population. Use the SVI Documentation pdf in the data folder to determine which variable this is, recognizing that you want the **estimate** and not the margin of error (MOE).
@@ -74,7 +91,8 @@ Filter the data below.
 
 ```{r}
 #| label: Task4
-
+revised_counties_pop <- svi %>%
+  filter(E_TOTPOP > 25000)
 # Your code goes here.
 ```
 
@@ -90,6 +108,8 @@ Filter the dataset you created in Task 4 so that it only includes counties you a
 #| label: Task5
 
 # Your code goes here.
+mobile_home_filter <- revised_counties_pop %>%
+  filter(F_MOBILE == 1)
 ```
 
 Describe your variable, why you chose it, and (if applicable) why you chose the cutoff you did.
