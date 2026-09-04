@@ -113,7 +113,7 @@ mobile_home_filter <- revised_counties_pop %>%
 
 Describe your variable, why you chose it, and (if applicable) why you chose the cutoff you did.
 
-I chose the flag used to delineate those counties with a percentage that is the 90th (or above) percentile. I chose this individual variable for a number of reasons, chief among those the fact that mobile homes are one of the most dangerous places to be during a tornadic event -- with extensive literature indicating that the chance of fatalities is much higher in mobile (and manufactured) homes than in other structures. Further, the percentage of mobile homes in a county might also be a good proxy for a lower socioeconomic status in that county (given that mobile homes are typically a more affordable alternative to other, more expensive [but safer] types of housing), which might also increase the vulnerability of that county to tornadoes and their effects (especially in the recovery stage after the storm). I also considered using the F_THEME4 flag for Housing Type/Transporation characteristics to consider other types of vulnerable housing situations (like people living in crowded homes); however, given the very well-established correlation between mobile homes and tornado effects, I decided to go with that flag to better measure counties that fall within that well-known vulnerable situation. Further research could certainly focus on a broader look at a wider breadth of potentially vulnerable housing situations; however, this might even be more effectively done by singularly examining vulnerability per structure (like using the flag for crowded houses) to determine vulnerability per housing type rather than examining potentially vulnerable housing types as a whole (since using whole-sale housing vulnerability might not give as helpful information on what types of structures are actually most vulnerable).
+I chose the flag used to delineate those counties with a percentage of mobile homes that is in the 90th (or above) percentile. I chose this individual variable for a number of reasons, chief among those the fact that mobile homes are one of the most dangerous places to be during a tornadic event -- with extensive literature indicating that the chance of fatalities is much higher in mobile (and manufactured) homes than in other structures. Further, the percentage of mobile homes in a county might also be a good proxy for a lower socioeconomic status in that county (given that mobile homes are typically a more affordable alternative to other, more expensive [but safer] types of housing), which might also increase the vulnerability of that county to tornadoes and their effects (especially in the recovery stage after the storm). I also considered using the F_THEME4 flag for Housing Type/Transporation characteristics to consider other types of vulnerable housing situations (like people living in crowded homes); however, given the very well-established correlation between mobile homes and tornado effects, I decided to go with that flag to better measure counties that fall within that well-known vulnerable situation. Further research could certainly focus on a broader look at a wider breadth of potentially vulnerable housing situations; however, this might even be more effectively done by singularly examining vulnerability per structure (like using the flag for crowded houses) to determine vulnerability per housing type rather than examining potentially vulnerable housing types as a whole (since using whole-sale housing vulnerability might not give as helpful information on what types of structures are actually most vulnerable).
 
 ## Connecting the data
 
@@ -122,7 +122,7 @@ Next you'll need to join these tornado counts to SVI population data using the `
 **NOTE:** You may need to change the name of the population data below to match the object you used for the SVI data.
 
 ```{r}
-revised_counties_pop_corr <- revised_counties_pop %>%
+revised_counties_pop_corr <- mobile_home_filter %>%
   rename(cty_fips = FIPS)
 view(revised_counties_pop)
 ```
@@ -135,6 +135,12 @@ Call the function above to rename your data. Now you're ready to join the data.
 #| label: Task6
 
 # Your code goes here.
+
+# Found out that I might need to change the state names in the SVI data to be all caps so it can better join with the tornado data, so I am going to try and use "toupper."
+
+revised_count_pop_cor_C <- revised_counties_pop_corr %>%
+  mutate(STATE = toupper(STATE))
+svi_tornado_joined <- inner_join(revised_count_pop_cor_C,vio_tors_by_cty_st)
 ```
 
 **Task 7:** *Find some documentation on the `inner_join()` function online or using help in R. Describe how it works, and explain how the results would have been different if you used `full_join()` instead.*
