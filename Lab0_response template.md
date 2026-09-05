@@ -325,28 +325,29 @@ the full citation and a summary of at least 100 words below.
 
 The article I examined, written by Nouri et al. (2021), looked at the
 relationships between human factors (like population density changes and
-obsevational technology improvements) and climate teleconnection factors
-(like the El Niño Southern Oscillation \[ENSO\]) in explaining changes
-in tornado frequency from 1950-2018 in specific regions (i.e., Tornado
-Alley, Dixie Alley, and elsewhere) of the US. The authors answered this
-question by first obtaining their data, utilizing the Storm Data dataset
-(as used in this lab) for their tornado data, population density from
-the US Census Bureau, and climate oscillation data from time series
-provided by NOAA’s National Centers for Environmental Prediction (NCEP).
-From there, they performed a principal component analysis that (in
-largely over-simplified terms) appears to have allowed them to ascertain
-which variables (“modes”) had the greatest influence on variability of
-tornado data in the studied regions. Using that data, they then
-performed a “wavelet analysis” that allowed them to ascertain potential
-cycles present within the data (seemiingly especially those that are not
-evident from simple analysis alone). Finally, they then trained two
-models (which are, again, greatly oversimplfied here) to determine how
-various factors explained tornado frequency variance: one that only
-examined anthropogenic influences on tornado frequency (i.e., changes in
-popualtion density and better observing systems) and another that
-combined these human-driven changes with climate oscillation variables.
-Interestingly enough, they used R (and other programs) to conduct their
-modeling, analysis, and visualization.
+observational technology improvements) and climate teleconnection
+factors (like the El Niño Southern Oscillation \[ENSO\]) in explaining
+changes in tornado frequency from 1950-2018 in specific regions (i.e.,
+Tornado Alley, Dixie Alley, and elsewhere) of the US. The authors
+answered this question by first obtaining their data, utilizing the
+Storm Data dataset (as used in this lab) for their tornado data,
+population density from the US Census Bureau, and climate oscillation
+data from time series provided by NOAA’s National Centers for
+Environmental Prediction (NCEP). From there, they performed a principal
+component analysis that (in largely over-simplified terms) appears to
+have allowed them to ascertain which variables (“modes”) had the
+greatest influence on variability of tornado data in the studied
+regions. Using that data, they then performed a “wavelet analysis” that
+allowed them to ascertain potential cycles present within the data
+(seemiingly especially those that are not evident from simple analysis
+alone). Finally, they then trained two models (which are, again, greatly
+oversimplfied here) to determine how various factors explained tornado
+frequency variance: one that only examined anthropogenic influences on
+tornado frequency (i.e., changes in popualtion density and better
+observing systems) and another that combined these human-driven changes
+with climate oscillation variables. Interestingly enough, they used R
+(and other programs) to conduct their modeling, analysis, and
+visualization.
 
 Using the methods described (albeit in very simple terms) above, the
 authors reached a number of fascinating and notable conclusions. In
@@ -358,8 +359,8 @@ responsible for variance in the Central US (i.e., Tornado Alley). They
 found mixed results outside of these two major regions in terms of human
 forcings on reported tornado frequency. In terms of climate, they found
 a wide range of results that suggested that numerous climate
-oscillations might have influences on environemntal characteristics that
-then make tornados (especially tornado outbreaks) more common in the
+oscillations might have influences on environmental characteristics that
+then make tornadoes (especially tornado outbreaks) more common in the
 studied regions. Specifically, they found that climate oscillations like
 ENSO and the North Atlantic Oscillation (NAO) had greater affect on
 Tornado Alley than Dixie Alley, whereas other oscillations (like the
