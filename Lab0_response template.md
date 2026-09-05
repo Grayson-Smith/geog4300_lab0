@@ -430,23 +430,23 @@ better R programmer in subsequent labs and other activities.
 Was it easy, moderate, or hard? What are the biggest things you learned
 by completing it?
 
-I thought that this lab was of moderate difficulty, primarily because
-this was my first major foray into notable R programming since my
-Biostats class (and likely more extensive already than most of my
-experiences in that class). Despite that moderate difficulty, I did
-think that I learned quite a lot. Specifically, I learned more about the
-use of the data wrangling functions we discussed in class – including
-how to better use them (like with the %in% in Task 3 \[as mentioned in
-the “Disclosure of assistance” section\]) to manipulate data. Further, I
-also learned how to troubleshoot problems – including with the
-assistance of others – and how to interpret the data that R outputs
-(even if it is not always clear). Finally, also I learned (or
-re-learned) some of the small sytax features of R (like the need for the
-“==” instead of “=” in Task 5) that are necessary for effective coding.
-Put together, although each of these lessons are relatively minor, I am
-hoping that the culmination of these lessons will help me continue
-building a strong foundation in R that I can use for the rest of this
-class (and hopefully into my future endeavours).
+*Response*: I thought that this lab was of moderate difficulty,
+primarily because this was my first major foray into notable R
+programming since my Biostats class (and likely more extensive already
+than most of my experiences in that class). Despite that moderate
+difficulty, I did think that I learned quite a lot. Specifically, I
+learned more about the use of the data wrangling functions we discussed
+in class – including how to better use them (like with the %in% in Task
+3 \[as mentioned in the “Disclosure of assistance” section\]) to
+manipulate data. Further, I also learned how to troubleshoot problems –
+including with the assistance of others – and how to interpret the data
+that R outputs (even if it is not always clear). Finally, also I learned
+(or re-learned) some of the small sytax features of R (like the need for
+the “==” instead of “=” in Task 5) that are necessary for effective
+coding. Put together, although each of these lessons are relatively
+minor, I am hoping that the culmination of these lessons will help me
+continue building a strong foundation in R that I can use for the rest
+of this class (and hopefully into my future endeavours).
 
 That’s it! When you’re done with this lab, use the Render command in
 Quarto to create a GitHub markdown document. Then push it to GitHub
